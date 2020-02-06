@@ -1,0 +1,181 @@
+{% extends '@SbSAdminLTE/Layout/base.html.twig' %}
+{% block title %}Employee{% endblock %}
+{% block admin_lte_logo %}
+                    <a href="" class="logo">
+                        <span class="logo-mini"><b>W</b>C</span>
+                        <img src="../../../images/Logo-Wincom.png" class="img-circle">
+                    </a>
+{% endblock %}
+{% block admin_lte_sidebar %}
+ 
+<ul class="sidebar-menu tree" data-widget="tree">
+        <li class="header">MAIN NAVIGATION</li>
+        <li><a href="{{ path('product_index') }}"><i class="fa fa-product-hunt"></i> <span>Produits</span></a></li>
+        <li><a href="{{ path('employees_index') }}"><i class="fa fa-users text-yellow"></i> <span>Employees</span></a></li>
+        <li><a href="{{ path('transactions_index') }}"><i class="fa fa-credit-card-alt text-green"></i> <span>Transactions</span></a></li>
+        <li><a href="{{ path('clients_index') }}"><i class="fa fa-user-circle-o text-aqua"></i> <span>Clients</span></a></li>
+        <li><a href="{{ path('accounts_index') }}"><i class="fa fa-circle-o text-red    " aria-hidden="true"></i> <span>Comptes</span></a></li>
+                   
+{% endblock %}
+{% block header_content %}{% endblock %}
+{% block page_content %}
+    <h1>Employee</h1>
+
+    <table class="table table-bordered table-hover dataTable">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ employee.id }}</td>
+            </tr>
+            <tr>
+                <th>Firstname</th>
+                <td>{{ employee.firstName }}</td>
+            </tr>
+            <tr>
+                <th>Lastname</th>
+                <td>{{ employee.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Cin</th>
+                <td>{{ employee.cin }}</td>
+            </tr>
+            <tr>
+                <th>Giveaccess</th>
+                <td>
+                    {% if employee.giveaccess %}
+                        oui
+                    {% else %}
+                        non
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Payment</th>
+                <td>
+                
+                {% if employee.payment %}
+                    oui
+                {% else %}
+                    non
+                {% endif %}
+                
+                </td>
+            </tr>
+            <tr>
+                <th>Transfert</th>
+                <td>
+                    {% if employee.transfert==1 %}
+                        oui
+                    {% else %}
+                        non
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Verifyaccess</th>
+                <td>
+                    {% if employee.verifyaccess %}
+                        oui
+                    {% else %}
+                        non
+                    {% endif %}
+                
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h4>Transactions list</h4>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title"></h3>
+
+                    <div class="box-tools">
+                        <div class="input-group input-group-sm" style="width: 150px;">
+                            <input class="form-control pull-right" name="table_search" placeholder="Search" type="text">
+
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for transaction in transactions %}
+                                <tr>
+                                    <td>
+                                        <a href="{{ path('transactions_show', { 'id': transaction.id }) }}">{{ transaction.id }}</a>
+                                    </td>
+                                    <td>
+                                        {% if transaction.date %}
+                                            {{ transaction.date|date('Y-m-d H:i:s') }}
+                                        {% endif %}
+                                    </td>
+                                    <td>{{ transaction.amount }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a href="{{ path('transactions_show', { 'id': transaction.id }) }}" class="btn btn-primary">show</a>
+                                            <button aria-expanded="false" class="btn btn-info dropdown-toggle" data-toggle="dropdown" type="button">
+                                                <span class="caret"></span>
+                                                <span class="sr-only">Toggle Dropdown</span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li>
+                                                    <a href="{{ path('transactions_show', { 'id': transaction.id }) }}">show</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+    </div>
+
+    <div class="col-md-2 pull-right">
+<table class ="table table-bordered text-center">
+<tbody>
+    <tr>
+    <td>
+            <a href="{{ path('employees_index') }}" class="btn btn-info">Back to the list</a>
+        </td>
+        
+     <td> 
+            <a href="{{ path('employees_edit', { 'id': employee.id }) }}" class="btn btn-warning">Edit</a>
+        </td>
+     <td>   
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete" class="btn btn-danger ">
+            {{ form_end(delete_form) }}
+        </td>
+     </tr>   
+    </tbody>
+    </table>
+    </div>
+{% endblock %}
+{% block admin_lte_footer %}
+<footer class="main-footer">
+                <div class="pull-right hidden-xs"><b>Version</b> 1.0.0</div>
+                <strong>Copyright &copy; 2019-2020 <a href="">Connecti</a>.</strong>
+                All rights reserved.
+            </footer>
+{% endblock %}

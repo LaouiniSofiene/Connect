@@ -1,0 +1,100 @@
+{% extends '@SbSAdminLTE/Layout/base.html.twig' %}
+{% block title %}Accounts list{% endblock %}
+{% block admin_lte_logo %}
+                    <a href="" class="logo">
+                        <span class="logo-mini"><b>W</b>C</span>
+                        <img src="../../images/Logo-Wincom.png" class="img-circle">
+                    </a>
+{% endblock %}
+{% block admin_lte_sidebar %}
+ 
+<ul class="sidebar-menu tree" data-widget="tree">
+        <li class="header">MAIN NAVIGATION</li>
+        <li><a href="{{ path('product_index') }}"><i class="fa fa-product-hunt"></i> <span>Produits</span></a></li>
+        <li><a href="{{ path('employees_index') }}"><i class="fa fa-users text-yellow"></i> <span>Employees</span></a></li>
+        <li><a href="{{ path('transactions_index') }}"><i class="fa fa-credit-card-alt text-green"></i> <span>Transactions</span></a></li>
+        <li><a href="{{ path('clients_index') }}"><i class="fa fa-user-circle-o text-aqua"></i> <span>Clients</span></a></li>
+        <li><a href="{{ path('accounts_index') }}"><i class="fa fa-circle-o text-red    " aria-hidden="true"></i> <span>Comptes</span></a></li>
+                   
+{% endblock %}
+{% block header_content %}{% endblock %}
+{% block page_content %}
+    <h1>Liste des clients</h1>
+    <form  action="{{ path('fos_user_registration_register') }}" method="post">
+    <input type="text" name='path' style="display : none;" value="accounts">
+    <input type="submit" value="Ajouter client" class="btn btn-app " style="float: right;"/>
+    </form>
+    <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title"></h3>
+
+              <div class="box-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                  <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Cin</th>
+                <th>Passport</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr>
+                <td><a href="{{ path('clients_show', { 'id': client.id }) }}">{{ client.id }}</a></td>
+                <td>{{ client.lastName }}</td>
+                <td>{{ client.firstName }}</td>
+                <td>{{ client.cin }}</td>
+                <td>{{ client.passport }}</td>
+                <td>
+                    <div class="btn-group">
+                  <a href="{{ path('clients_show', { 'id': client.id }) }}" class="btn btn-primary">Afficher</a>
+                  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <span class="caret"></span>
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="{{ path('clients_show', { 'id': client.id }) }}" >Afficher</a></li>
+                    <li><a href="{{ path('clients_edit', { 'id': client.id }) }}" >Modifier</a></li>
+                  </ul>
+                </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody></table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+
+
+
+
+
+
+
+{% endblock %}
+{% block admin_lte_footer %}
+<footer class="main-footer">
+                <div class="pull-right hidden-xs"><b>Version</b> 1.0.0</div>
+                <strong>Copyright &copy; 2019-2020 <a href="">Connecti</a>.</strong>
+                All rights reserved.
+            </footer>
+{% endblock %}

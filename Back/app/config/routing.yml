@@ -1,0 +1,16 @@
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+sbs_adminlte:
+    resource: "@SbSAdminLTEBundle/Resources/config/routing.xml"
+sbs_adminlte_user_profile:
+    path: /user/profile
+    defaults: {_controller: AppBundle:Profile:main}
+sbs_adminlte_user_logout:
+    path: /logout
+app:
+    resource: "@AppBundle/Resources/config/routing.yml"
+    prefix:   /
+homepage:
+    path:     /
+    defaults: { _controller: "AppBundle:Product:index" }
+    methods:  GET

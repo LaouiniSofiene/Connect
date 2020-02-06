@@ -1,0 +1,30 @@
+app_employees:
+    resource: "@AppBundle/Resources/config/routing/employees.yml"
+    prefix:   /employees
+app_transactions:
+        resource: "@AppBundle/Resources/config/routing/transactions.yml"
+        prefix:   /transactions
+app_services:
+        resource: "@AppBundle/Resources/config/routing/services.yml"
+        prefix:   /services
+app_clients:
+        resource: "@AppBundle/Resources/config/routing/clients.yml"
+        prefix:   /clients
+app_yes:
+        resource: "@AppBundle/Resources/config/routing/admin.yml"
+        prefix:   /admin
+app_accounts:
+        resource: "@AppBundle/Resources/config/routing/accounts.yml"
+        prefix:   /accounts
+get_token:
+    path:     /getToken
+    defaults: { _controller: AppBundle:Token:getToken }
+logged:
+    path:     /logged
+    defaults: { _controller: AppBundle:Token:logged }
+app_product:
+        resource: "@AppBundle/Resources/config/routing/product.yml"
+        prefix:   /product
+app_product:
+        resource: "@AppBundle/Resources/config/routing/product.yml"
+        prefix:   /

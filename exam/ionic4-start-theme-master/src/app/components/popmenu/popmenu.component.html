@@ -1,0 +1,28 @@
+<ion-fab vertical="bottom" horizontal="center" slot="fixed" class="animated fadeInDown">
+  <ion-fab-button (click)="togglePopupMenu()">
+    <ion-ripple-effect></ion-ripple-effect>
+    <ion-icon name="apps"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
+<div class="popup-menu">
+  <div class="popup-menu-overlay" [ngClass]="{'in': openMenu}"></div>
+  <div class="popup-menu-panel" [ngClass]="{'in': openMenu}">
+    <div class="popup-menu-item" *ngIf="user.payment" (click)="paymentForm()">
+      <ion-icon name="cog" slot="middle" size="large"></ion-icon>
+      <span>payment</span>
+    </div>
+    <div class="popup-menu-item" *ngIf="user.transfert" (click)="transfertForm()">
+      <ion-icon name="cog" slot="middle" size="large"></ion-icon>
+      <span>Transfert</span>
+    </div>
+    <div class="popup-menu-item" *ngIf="user.giveaccess" (click)="accessForm()">
+      <ion-icon name="beer" slot="middle" size="large"></ion-icon>
+      <span>Donner un accès</span>
+    </div>
+    <div class="popup-menu-item" *ngIf="user.verifyaccess" (click)="verifyForm()">
+      <ion-icon name="person" slot="middle" size="large"></ion-icon>
+      <span>Verifier</span>
+    </div>
+  </div>
+</div>

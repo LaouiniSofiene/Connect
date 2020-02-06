@@ -1,0 +1,29 @@
+transactions_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Transactions:index" }
+    methods:  GET
+
+transactions_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Transactions:show" }
+    methods:  GET
+
+transactions_getbypersonnel:
+    path:     /personnel/{id}
+    defaults: { _controller: "AppBundle:Transactions:getbypersonnel" }
+    methods:  GET
+
+transactions_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Transactions:new" }
+    methods:  [GET, POST]
+
+transactions_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Transactions:edit" }
+    methods:  [GET, POST]
+
+transactions_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Transactions:delete" }
+    methods:  DELETE

@@ -1,0 +1,28 @@
+clients_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Clients:index" }
+    methods:  GET
+
+clients_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Clients:show" }
+    methods:  GET
+
+clients_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Clients:new" }
+    methods:  [GET, POST]
+
+clients_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Clients:edit" }
+    methods:  [GET, POST]
+
+clients_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Clients:delete" }
+    methods:  DELETE
+json_clients_get_by_fos:
+    path:     /{username}/get_by_fos
+    defaults: { _controller: "AppBundle:Clients:get_by_fos" }
+    methods:  [GET, POST]

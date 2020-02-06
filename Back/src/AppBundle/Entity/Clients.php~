@@ -1,0 +1,84 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Clients
+ *
+ * @ORM\Table(name="clients", indexes={@ORM\Index(name="Fk_Account", columns={"Id_Account"}), @ORM\Index(name="IDX_C82E74B93A24E9", columns={"idFos"}), @ORM\Index(name="Fk_Etabli", columns={"idetab"})})
+ * @ORM\Entity
+ */
+class Clients
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Last_Name", type="string", length=255, nullable=false)
+     */
+    private $lastName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="First_Name", type="string", length=255, nullable=false)
+     */
+    private $firstName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Cin", type="string", length=100, nullable=true)
+     */
+    private $cin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Passport", type="string", length=100, nullable=true)
+     */
+    private $passport;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \AppBundle\Entity\FosUser
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\FosUser")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idFos", referencedColumnName="id")
+     * })
+     */
+    private $idfos;
+
+    /**
+     * @var \AppBundle\Entity\Accounts
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Accounts")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="Id_Account", referencedColumnName="id")
+     * })
+     */
+    private $idAccount;
+
+    /**
+     * @var \AppBundle\Entity\Establishment
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Establishment")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idetab", referencedColumnName="Id")
+     * })
+     */
+    private $idetab;
+
+
+}
+

@@ -1,0 +1,43 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Services
+ *
+ * @ORM\Table(name="services", indexes={@ORM\Index(name="fk_Etab", columns={"idetab"})})
+ * @ORM\Entity
+ */
+class Services
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Lable", type="string", length=255, nullable=false)
+     */
+    private $lable;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \AppBundle\Entity\Establishment
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Establishment")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idetab", referencedColumnName="Id")
+     * })
+     */
+    private $idetab;
+
+
+}
+

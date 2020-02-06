@@ -1,0 +1,87 @@
+{% extends '@SbSAdminLTE/Layout/base.html.twig' %}
+{% block title %}Employee creation{% endblock %}
+{% block admin_lte_logo %}
+                    <a href="" class="logo">
+                        <span class="logo-mini"><b>W</b>C</span>
+                        <img src="../../../images/Logo-Wincom.png" class="img-circle">
+                    </a>
+{% endblock %}
+{% block admin_lte_sidebar %}
+ 
+<ul class="sidebar-menu tree" data-widget="tree">
+        <li class="header">MAIN NAVIGATION</li>
+        <li><a href="{{ path('product_index') }}"><i class="fa fa-product-hunt"></i> <span>Produits</span></a></li>
+        <li><a href="{{ path('employees_index') }}"><i class="fa fa-users text-yellow"></i> <span>Employees</span></a></li>
+        <li><a href="{{ path('transactions_index') }}"><i class="fa fa-credit-card-alt text-green"></i> <span>Transactions</span></a></li>
+        <li><a href="{{ path('clients_index') }}"><i class="fa fa-user-circle-o text-aqua"></i> <span>Clients</span></a></li>
+        <li><a href="{{ path('accounts_index') }}"><i class="fa fa-circle-o text-red    " aria-hidden="true"></i> <span>Comptes</span></a></li>
+                   
+{% endblock %}
+{% block header_content %}{% endblock %}
+{% block page_content %}
+    <h1>Employee creation</h1>
+{% form_theme form '@SbSAdminLTE/Layout/base.html.twig' %}
+    {{ form_start(form) }}
+        {{ form_widget(form) }}
+       <div class="form-group">
+            <label>Service</label>
+            <select required class="form-control select2 select2-hidden-accessible" name="idservice" style="width: 100%;" tabindex="-1" aria-hidden="true">
+                <option></option>
+                {% for service in services %}
+                    <option value={{service.id}}>{{service.lable}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <h3>Les prévilège : </h3>
+        <div class="form-group">
+         <label>
+            <div class="icheckbox_minimal-blue disabled" aria-checked="false" aria-disabled="true" style="position: relative;">
+                <input class="minimal" type="checkbox" class="minimal" name="giveaccess">
+
+                donner un accès
+            </div>
+        </label>
+        </div>
+
+        <div class="form-group">
+
+        <label>
+            <div class="icheckbox_minimal-blue disabled" aria-checked="false" aria-disabled="true" style="position: relative;">
+                <input class="minimal" type="checkbox" class="minimal" name="payment">
+
+            payment
+            </div>
+        </label>
+         </div>
+        <div class="form-group">
+            <label>
+                <div class="icheckbox_minimal-blue disabled" aria-checked="false" aria-disabled="true" style="position: relative;">
+                    <input class="minimal" type="checkbox" class="minimal" name="transfert">
+
+                transfert
+                </div>
+            </label>
+        </div>
+        <div class="form-group">
+            <label>
+                <div class="icheckbox_minimal-blue disabled" aria-checked="false" aria-disabled="true" style="position: relative;">
+                    <input class="minimal" type="checkbox" class="minimal" name="verifyaccess">
+
+                verifyaccess
+                </div>
+            </label>
+        </div>
+        <input type="submit" value="Create" class="btn btn-success" style="float: right;"/>
+    {{ form_end(form) }}
+
+
+            <a href="{{ path('employees_index') }}" class="btn btn-info">Back to the list</a>
+
+{% endblock %}
+{% block admin_lte_footer %}
+<footer class="main-footer">
+                <div class="pull-right hidden-xs"><b>Version</b> 1.0.0</div>
+                <strong>Copyright &copy; 2019-2020 <a href="">Connecti</a>.</strong>
+                All rights reserved.
+            </footer>
+{% endblock %}

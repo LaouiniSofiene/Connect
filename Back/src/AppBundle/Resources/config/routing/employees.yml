@@ -1,0 +1,29 @@
+employees_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Employees:index" }
+    methods:  GET
+
+employees_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Employees:show" }
+    methods:  GET
+
+employees_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Employees:new" }
+    methods:  [GET, POST]
+
+employees_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Employees:edit" }
+    methods:  [GET, POST]
+
+json_employees_get_by_fos:
+    path:     /{username}/get_by_fos
+    defaults: { _controller: "AppBundle:Employees:get_by_fos" }
+    methods:  [GET, POST]
+
+employees_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Employees:delete" }
+    methods:  DELETE

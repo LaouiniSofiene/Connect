@@ -1,0 +1,105 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Employees
+ *
+ * @ORM\Table(name="employees", indexes={@ORM\Index(name="FK_Services", columns={"IdService"}), @ORM\Index(name="IDX_BA82C300B93A24E9", columns={"idFos"}), @ORM\Index(name="Fk_Etablis", columns={"idetab"})})
+ * @ORM\Entity
+ */
+class Employees
+{
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="First_Name", type="string", length=255, nullable=false)
+     */
+    private $firstName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Last_Name", type="string", length=255, nullable=false)
+     */
+    private $lastName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Cin", type="string", length=255, nullable=false)
+     */
+    private $cin;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="GiveAccess", type="integer", nullable=false)
+     */
+    private $giveaccess;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Payment", type="integer", nullable=false)
+     */
+    private $payment;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="Transfert", type="integer", nullable=false)
+     */
+    private $transfert;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="VerifyAccess", type="integer", nullable=false)
+     */
+    private $verifyaccess;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \AppBundle\Entity\FosUser
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\FosUser")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idFos", referencedColumnName="id")
+     * })
+     */
+    private $idfos;
+
+    /**
+     * @var \AppBundle\Entity\Services
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Services")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="IdService", referencedColumnName="Id")
+     * })
+     */
+    private $idservice;
+
+    /**
+     * @var \AppBundle\Entity\Establishment
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Establishment")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idetab", referencedColumnName="Id")
+     * })
+     */
+    private $idetab;
+
+
+}
+

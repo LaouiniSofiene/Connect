@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-text color="light">
+        <ion-text color="light" class="fw700">Rent a car</ion-text>
+      </ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card >
+    <ion-button (click)="loadUtil()">
+      UTIL
+    </ion-button>
+    <ion-button (click)="loadLoisirs()">
+      LOISIRS
+    </ion-button>
+    <ion-button (click)="loadRes()">
+      RES
+    </ion-button>
+    <ion-button (click)="LOGOUT()">
+      LOGOUT
+    </ion-button>
+  </ion-card>
+  <!-- Util -->
+  <ion-card *ngIf="util">
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx" *ngFor="let voiture of voitures" >
+      <h4 *ngIf="voiture.type=='U'" (click)="reserver(voiture)">{{ voiture.vehicule }}</h4>
+    </div>
+  </ion-card>
+  <!-- Fin Util -->
+
+  <!-- LOISIRS -->
+  <ion-card *ngIf="loisirs">
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx" *ngFor="let voiture of voitures">
+          <h4 *ngIf="voiture.type=='L'" (click)="reserver(voiture)">{{ voiture.vehicule }}</h4>
+      </div>
+  </ion-card>
+  <!-- Fin LOISIRS -->
+
+  <!-- Res -->
+  <ion-card *ngIf="res">
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="gappx" *ngFor="let voiture of voitures">
+          <h4 *ngIf="voiture.type=='L'" (click)="reserver(voiture)">{{ reservation.cin }}</h4>
+      </div>
+  </ion-card>
+  <!-- Fin Res -->
+
+  <!-- reservationForm -->
+  <ion-card *ngIf="reservationForm">
+    <ion-card>
+      <h1 fxLayoutAlign="center center" fxLayoutGap="gappx" >
+        {{SelectedVoiture.vehicule}}
+      </h1>
+      <h5 fxLayoutAlign="center center" fxLayoutGap="gappx" >
+         type : {{SelectedVoiture.type}}
+      </h5>
+      <h5 fxLayoutAlign="center center" fxLayoutGap="gappx" >
+         puissance : {{SelectedVoiture.puissance}}
+      </h5>
+      <h5 fxLayoutAlign="center center" fxLayoutGap="gappx" >
+         carburant :  {{SelectedVoiture.carburant}}
+      </h5>
+      <h5 fxLayoutAlign="center center" fxLayoutGap="gappx" >
+         prix : {{SelectedVoiture.prix}}DT/JOUR
+      </h5>
+      <h5 fxLayoutAlign="center center" fxLayoutGap="gappx" >
+        suplément chauffeur {{SelectedVoiture.supplementperday}}DT/JOUR
+      </h5>
+    </ion-card>
+    <input type="text" [(ngModel)]="name">
+    <input type="text" [(ngModel)]="cin">
+    <input type="number" [(ngModel)]="nombrejour">
+    <input type="checkbox" [(ngModel)]="chauffeur"> avec chauffeur
+    <input type="button" value="Réserver" (click)="rese()">
+  </ion-card>
+  <!-- Fin reservationForm -->
+</ion-content>

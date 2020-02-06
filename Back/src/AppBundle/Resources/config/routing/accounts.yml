@@ -1,0 +1,48 @@
+accounts_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Accounts:index" }
+    methods:  GET
+
+accounts_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Accounts:show" }
+    methods:  GET
+
+accounts_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Accounts:new" }
+    methods:  [GET, POST]
+
+accounts_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AppBundle:Accounts:edit" }
+    methods:  [GET, POST]
+
+accounts_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Accounts:delete" }
+    methods:  DELETE
+accounts_out:
+    path:     /{qrcode}/{amount}/out
+    defaults: { _controller: "AppBundle:Accounts:out" }
+    methods:  [GET, POST]
+accounts_in:
+    path:     /{qrcode}/{amount}/in
+    defaults: { _controller: "AppBundle:Accounts:in" }
+    methods:  [GET, POST]
+accounts_goout:
+    path:     /{qrcode}/out
+    defaults: { _controller: "AppBundle:Accounts:goout" }
+    methods:  [GET, POST]
+accounts_goin:
+    path:     /{qrcode}/in
+    defaults: { _controller: "AppBundle:Accounts:goin" }
+    methods:  [GET, POST]
+accounts_exist:
+    path:     /{qrcode}/exist
+    defaults: { _controller: "AppBundle:Accounts:exist" }
+    methods:  [GET, POST]
+accounts_sold:
+    path:     /{qrcode}/sold
+    defaults: { _controller: "AppBundle:Accounts:sold" }
+    methods:  [GET, POST]

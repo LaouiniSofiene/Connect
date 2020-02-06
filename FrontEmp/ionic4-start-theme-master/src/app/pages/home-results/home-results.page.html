@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button color="secondary"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-text color="light">
+        <ion-text color="light" class="fw700">Ionic 4 Start</ion-text>
+      </ion-text>
+    </ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-button size="small" shape="round" color="medium" (click)="notifications()">
+        <ion-icon name="notifications"></ion-icon>
+        <ion-badge color="dark" slot="end">2</ion-badge>
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+  <ion-toolbar color="dark">
+    <ion-searchbar [(ngModel)]="searchKey"></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button size="small" shape="round" color="medium" (click)="searchFilter()">
+        <ion-icon name="options"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h1 *ngIf="scannedData">{{scannedData}}</h1>
+  <ion-card class="bg-white" *ngIf="GiveAccess">
+    <h1>Ajouter un compte</h1>
+    <ion-item no-padding class="animated fadeInUp">
+      <ion-label position="floating">
+        Somme a verser
+      </ion-label>
+      <ion-input color="secondary" type="number" min="0" name="amount" [(ngModel)]='amount'></ion-input>
+    </ion-item>
+    <ion-item no-padding class="animated fadeInUp">
+      <ion-label position="floating">
+        Nombre de personnes
+      </ion-label>
+      <ion-input color="secondary" type="number" name="numberaccess" min="0" max="8" [(ngModel)]='numberaccess'></ion-input>
+    </ion-item>
+    <ion-button expand="full" color="dark" (click)="scanCode()" full>
+      Scaner le Code
+    </ion-button>
+    <ion-button expand="full" color="dark" (click)="giveAccess()" full>
+        Valider
+    </ion-button>
+  </ion-card>
+
+  <ion-card class="bg-white" *ngIf="Payment">
+    <h1>Addition</h1>
+    <ion-grid *ngFor="let pro of products">
+      <ion-col col-4>
+        <ion-button expand="full" color="dark" (click)="addtoAddition(pro)">
+          {{pro.name}} <br>
+          {{pro.price}} dt
+        </ion-button>
+      </ion-col>
+    </ion-grid>
+    <ion-item no-padding class="animated fadeInUp">
+      <h3 *ngIf="amount">
+        Somme a payer : <br>{{ amount }}Dt
+      </h3>
+      
+    </ion-item>
+    <ion-button expand="full" color="dark" (click)="scanCode()" full>
+      Scaner le Code
+    </ion-button>
+    <ion-button expand="full" color="dark" (click)="out()" full>
+        Valider
+    </ion-button>
+    
+  </ion-card>
+
+  <ion-card class="bg-white" *ngIf="Transfert">
+    <h1>Verser de l'argent</h1>
+    <ion-item no-padding class="animated fadeInUp">
+      <ion-label position="floating">
+        Somme a verser
+      </ion-label>
+      <ion-input color="secondary" type="number" [(ngModel)]='amount' name="amount"></ion-input>
+    </ion-item>
+    <ion-button expand="full" color="dark" (click)="scanCode()" full>
+      Scaner le Code
+    </ion-button>
+
+    <ion-button expand="full" color="dark" (click)="in()" full>
+        Valider
+    </ion-button>
+  </ion-card>
+
+  <ion-card class="bg-white" *ngIf="VerifyAccess">
+    <h1>VerifyAccess</h1>
+    <ion-button expand="full" color="dark" (click)="scanCode()" full>
+      Scaner le Code
+    </ion-button>
+    <ion-button expand="full" color="dark" (click)="verifyAccess()" full>
+      Valider
+    </ion-button>
+  </ion-card>
+  <popmenu></popmenu>
+</ion-content>
